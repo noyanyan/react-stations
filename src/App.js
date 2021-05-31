@@ -18,6 +18,9 @@ export const App = () => {
       <main>
         <p>this is a dog image gallery</p>
         <img src={dogUrl} alt="dog_image" />
+        <button type="button" onClick={() => console.log('hoge')}>
+          更新
+        </button>
       </main>
     </div>
   )
