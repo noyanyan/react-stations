@@ -8,5 +8,16 @@ import './App.css'
  * @type {React.FC}
  */
 export const App = () => {
-  return <header>HOGE APP</header>
+  return (
+    <div>
+      <header>HOGE APP</header>
+      <main>
+        <p>this is a dog image gallery</p>
+        <img
+          src="https://images.dog.ceo/breeds/hound-basset/n02088238_5441.jpg"
+          alt="dog_image"
+        />
+      </main>
+    </div>
+  )
 }
