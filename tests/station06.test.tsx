@@ -32,6 +32,10 @@ describe('<App />', () => {
     const initialImg = img.props.src
     expect(initialImg).not.toBeFalsy()
 
+    act(() => {
+      button.props.onClick()
+    })
+
     callback.run = (value: string) => {
       try {
         expect(fetch).toBeCalled()
@@ -41,9 +45,5 @@ describe('<App />', () => {
         done.fail(e)
       }
     }
-
-    act(() => {
-      button.props.onClick()
-    })
   })
 })
