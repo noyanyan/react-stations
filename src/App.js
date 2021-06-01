@@ -9,20 +9,16 @@ import './App.css'
  */
 export const App = () => {
   const [dogUrl, setDogUrl] = React.useState(
-    'https://images.dog.ceo/breeds/hound-basset/n02088238_5441.jpg ',
+    'https://images.dog.ceo/breeds/mastiff-tibetan/n02108551_340.jpg',
   )
 
   const getUrl = async () => {
-    const data = await fetch(
-      'https://images.dog.ceo/breeds/dalmatian/cooper1.jpg',
-    )
-    console.log(data)
-    return data.url
+    const data = await fetch('https://dog.ceo/api/breeds/image/random')
+    return data.json()
   }
   const handleClick = async () => {
     const newUrl = await getUrl()
-    console.log(newUrl)
-    setDogUrl(newUrl)
+    setDogUrl(newUrl.message)
   }
 
   return (
