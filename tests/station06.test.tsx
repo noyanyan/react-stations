@@ -37,9 +37,8 @@ describe('<App />', () => {
         expect(fetch).toBeCalled()
         expect(value).not.toEqual(initialImg)
         expect(value).not.toBeFalsy()
-        done()
       } catch (e) {
-        done.fail(e)
+        expect(e).toMatch('error')
       }
     }
 
