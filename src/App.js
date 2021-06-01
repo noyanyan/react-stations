@@ -16,9 +16,8 @@ export const App = () => {
     const data = await fetch('https://dog.ceo/api/breeds/image/random')
     return data.json()
   }
-  const handleClick = async () => {
-    const newUrl = await getUrl()
-    setDogUrl(newUrl.message)
+  const handleClick = () => {
+    return getUrl().then(value => setDogUrl(value.message))
   }
 
   return (
