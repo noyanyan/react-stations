@@ -35,7 +35,7 @@ describe('<App />', () => {
     callback.run = (value: string) => {
       try {
         expect(fetch).toBeCalled()
-        expect(value).toStrictEqual(imageUrl)
+        expect(value).toEqual(expect.stringContaining('https://images.dog.ceo'))
         done()
       } catch (e) {
         done.fail(e)
