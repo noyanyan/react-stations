@@ -35,10 +35,10 @@ describe('<App />', () => {
     callback.run = (value: string) => {
       try {
         expect(fetch).toBeCalled()
-        expect(value).not.toEqual(initialImg)
-        expect(value).not.toBeFalsy()
+        expect(value).toStrictEqual(imageUrl)
+        done()
       } catch (e) {
-        expect(e).toMatch('error')
+        done.fail(e)
       }
     }
 
