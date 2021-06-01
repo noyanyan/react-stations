@@ -32,18 +32,19 @@ describe('<App />', () => {
     const initialImg = img.props.src
     expect(initialImg).not.toBeFalsy()
 
-    act(() => {
-      button.props.onClick()
-    })
-
     callback.run = (value: string) => {
       try {
         expect(fetch).toBeCalled()
-        expect(value).toEqual(expect.stringContaining('https://images.dog.ceo'))
+        expect(value).not.toEqual(initialImg)
+        expect(value).not.toBeFalsy()
         done()
       } catch (e) {
         done.fail(e)
       }
     }
+
+    act(() => {
+      button.props.onClick()
+    })
   })
 })

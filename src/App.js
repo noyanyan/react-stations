@@ -14,10 +14,11 @@ export const App = () => {
 
   const getUrl = async () => {
     const data = await fetch('https://dog.ceo/api/breeds/image/random')
-    return data.json()
+    return await data.json()
   }
-  const handleClick = () => {
-    return getUrl().then(value => setDogUrl(value.message))
+  const handleClick = async () => {
+    const value = await getUrl()
+    return setDogUrl(value.message)
   }
 
   return (
