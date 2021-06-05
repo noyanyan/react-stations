@@ -1,26 +1,36 @@
 // DO NOT DELETE
 import React, { useEffect, useState } from 'react'
 import BreedsSelect from './BreedsSelect'
+import DogImg from './DogImage'
 
 const DogListContainer = () => {
-  const [dogList, setDogList] = useState(null)
+  const [BreedList, setDogList] = useState(null)
+  const [dogImgs, setDogImgs] = useState([])
 
+  const handleBreedChange = async () => {
+    const value = await fetch(
+      'https://dog.ceo/api/breed/hound/images/random/12',
+    ).then(val => val.json())
+    setDogImgs(value.message)
+  }
   useEffect(() => {
     const handler = async () => {
       const value = await fetch('https://dog.ceo/api/breeds/list/all').then(
         val => val.json(),
       )
-      return setDogList(Object.keys(value.message))
+      setDogList(Object.keys(value.message))
     }
     handler()
+    handleBreedChange()
   }, [])
+  const res = dogImgs
+    ? dogImgs.map(img => <DogImg key={img} url={img} />)
+    : null
 
-  if (dogList) {
-    for (let i = 0; i < dogList.length; i++) console.log(dogList[i])
-  }
   return (
     <div>
-      {dogList ? <BreedsSelect breeds={dogList} /> : <p>now loading...</p>}
+      {BreedList ? <BreedsSelect breeds={BreedList} /> : <p>now loading...</p>}
+      {res}
     </div>
   )
 }
