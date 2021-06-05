@@ -3,37 +3,7 @@ import React from 'react'
 import './App.css'
 import 'tailwindcss/tailwind.css'
 import Header from './Header'
-
-const DogImg = ({ url }) => (
-  <img
-    className="rounded-xl mt-10 flex justify-center bg-gray-600 p-1"
-    style={{ width: 400 }}
-    src={url}
-    alt="dog_image"
-  />
-)
-
-const Description = ({ dogName, dogUrl, handleClick }) => {
-  return (
-    <>
-      <div className="mx-20 py-4">
-        <p className="text-2xl bold flex justify-center flex-wrap">
-          This is a {dogName} image gallery!
-        </p>
-        <DogImg url={dogUrl} />
-        <button
-          type="button flex justify-center"
-          onClick={handleClick}
-          className=" border-4 rounded shadow-md mt-8 p-2 mx-auto hover:bg-indigo-300 w-20"
-          style={{ display: 'block' }}
-        >
-          更新
-        </button>
-      </div>
-      <div className="flex justify-center mt-32 text-xl">←かわいい</div>
-    </>
-  )
-}
+import Description from './Description'
 
 /**
  *
