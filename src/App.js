@@ -4,7 +4,7 @@ import './App.css'
 import 'tailwindcss/tailwind.css'
 import Header from './Header'
 import Description from './Description'
-
+import DogListContainer from './DogListContainer'
 /**
  *
  * @type {React.FC}
@@ -48,6 +48,7 @@ export const App = () => {
             handleClick={handleClick}
             dogUrl={dogUrl}
           />
+          <DogListContainer />
         </div>
       </main>
     </div>
