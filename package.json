@@ -47,7 +47,6 @@
     "prettier": "^2.3.0",
     "react-refresh": "^0.10.0",
     "react-test-renderer": "^17.0.2",
-    "simple-git-hooks": "^2.3.1",
     "style-loader": "^2.0.0",
     "tailwindcss": "^2.1.2",
     "ts-jest": "^27.0.0",
@@ -68,11 +67,7 @@
     "lint": "eslint --ext .js ./src",
     "lint:fix": "eslint --ext .js ./src --fix",
     "login:techtrain": "techtrain-railway login",
-    "hook:pre-commit": "techtrain-railway hook:pre-commit",
     "hook:update": "simple-git-hooks",
     "postinstall": "yarn hook:update && yarn login:techtrain"
-  },
-  "simple-git-hooks": {
-    "pre-commit": "yarn hook:pre-commit"
   }
 }

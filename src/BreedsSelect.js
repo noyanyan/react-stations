@@ -1,21 +1,18 @@
 // DO NOT DELETE
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 // eslint-disable-next-line react/prop-types
-const BreedsSelect = ({ breeds }) => {
-  const [value, setValue] = useState(breeds[0])
-  const handleChange = e => {
-    setValue(e.target.value)
-  }
-  console.log(breeds)
-
+const BreedsSelect = ({ breeds = [], selectedBreed, handleSelectChange }) => {
+  const breedItem =
+    breeds.length &&
+    breeds.map(breed => (
+      <option key={breed} value={breed}>
+        {breed}
+      </option>
+    ))
   return (
-    <select value={value} onChange={handleChange}>
-      {breeds.map(breed => (
-        <option key={breed} selected={value === breed} value={breed}>
-          {breed}
-        </option>
-      ))}
+    <select value={selectedBreed} onChange={handleSelectChange}>
+      {breedItem}
     </select>
   )
 }

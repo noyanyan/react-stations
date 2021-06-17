@@ -4,32 +4,43 @@ import BreedsSelect from './BreedsSelect'
 import DogImg from './DogImage'
 
 const DogListContainer = () => {
-  const [BreedList, setDogList] = useState(null)
+  const [breedList, setBreedList] = useState([])
   const [dogImgs, setDogImgs] = useState([])
+  const [selectedBreed, setSelectedBreed] = useState('african')
 
-  const handleBreedChange = async () => {
-    const value = await fetch(
-      'https://dog.ceo/api/breed/hound/images/random/12',
-    ).then(val => val.json())
-    setDogImgs(value.message)
+  const handleSelectChange = e => {
+    setSelectedBreed(e.target.value)
   }
   useEffect(() => {
-    const handler = async () => {
-      const value = await fetch('https://dog.ceo/api/breeds/list/all').then(
-        val => val.json(),
+    const fetchAllBreeds = async () => {
+      const response = await fetch('https://dog.ceo/api/breeds/list/all').then(
+        r => r.json(),
       )
-      setDogList(Object.keys(value.message))
+      setBreedList(Object.keys(response.message))
     }
-    handler()
-    handleBreedChange()
+    fetchAllBreeds()
   }, [])
+  useEffect(() => {
+    const fetcher = async breed => {
+      const response = await fetch(
+        `https://dog.ceo/api/breed/${breed}/images/random/12`,
+      ).then(r => r.json())
+      setDogImgs(response.message)
+    }
+    fetcher(selectedBreed)
+  }, [selectedBreed])
+
   const res = dogImgs
     ? dogImgs.map(img => <DogImg key={img} url={img} />)
     : null
 
   return (
     <div>
-      {BreedList ? <BreedsSelect breeds={BreedList} /> : <p>now loading...</p>}
+      <BreedsSelect
+        breeds={breedList}
+        selectedBreed={selectedBreed}
+        handleSelectChange={handleSelectChange}
+      />
       {res}
     </div>
   )
